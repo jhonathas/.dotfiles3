@@ -1,0 +1,6 @@
+# name : Assert
+# key : as
+# group: Unit test
+# contributor : diegoalvareznogueira@gmail.com
+# --
+assert $0

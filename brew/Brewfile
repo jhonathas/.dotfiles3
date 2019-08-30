@@ -1,0 +1,72 @@
+# https://github.com/Homebrew/homebrew-bundle
+
+# specify a directory to install
+cask_args appdir: '/Applications'
+
+# install packages
+tap 'caskroom/homebrew-cask' || true
+tap 'caskroom/versions' || true
+# tap 'tap nexeck/homebrew-tmuxinator'
+
+# install packages
+brew 'automake'
+brew 'autoconf'
+brew 'openssl'
+brew 'libyaml'
+brew 'readline'
+brew 'libxslt'
+brew 'libtool'
+brew 'unixodbc'
+brew 'wxmac'
+brew 'gnupg2'
+brew 'coreutils'
+brew 'imagemagick@6'
+brew 'graphicsmagick'
+brew 'pkg-config'
+brew 'autoenv'
+brew 'heroku/brew/heroku'
+brew 'fop'
+brew 'fzf'
+
+brew 'git'
+brew 'tree'
+brew 'python'
+brew 'python3'
+brew 'vim'
+brew 'nvim'
+brew 'tmux'
+# brew 'nexeck/homebrew-tmuxinator/tmuxinator'
+brew 'grv'
+brew 'git-flow-avh'
+brew 'asdf'
+brew 'stow'
+brew 'mackup'
+
+# casks
+cask 'google-chrome'
+cask 'dropbox'
+cask 'alfred'
+cask 'evernote'
+cask 'skype'
+cask 'spotify'
+cask '1password'
+cask 'dash'
+cask 'alacritty'
+cask 'istat-menus'
+cask 'discord'
+cask 'libreoffice'
+cask 'emacs'
+cask 'macvim'
+cask 'rowanj-gitx'
+cask 'iterm2'
+cask 'postman'
+cask 'transmission'
+cask 'poedit'
+cask 'whatsapp'
+cask 'docker'
+
+# mac apple store
+mas 'Navicat Essentials for PostgreSQL', id: 466725643
+mas 'Magnet', id: 441258766
+mas 'kiwi-for-gmail', id: 986304488
+mas 'mail-for-gmail', id: 1216244845

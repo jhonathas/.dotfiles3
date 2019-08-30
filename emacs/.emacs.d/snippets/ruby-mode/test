@@ -1,0 +1,7 @@
+# name : Test
+# key : test
+# contributor : diegoalvareznogueira@gmail.com
+# --
+test "${1:test description}" do
+  $0
+end

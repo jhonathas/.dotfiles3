@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Create new React Native simple component.
+# key: scomponent
+# --
+const $1 = () => (
+  $2
+);

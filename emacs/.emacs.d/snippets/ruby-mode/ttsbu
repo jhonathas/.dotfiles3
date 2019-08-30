@@ -1,0 +1,10 @@
+# name : Should be unique
+# key : tt
+# group: Unit test code
+# contributor : diegoalvareznogueira@gmail.com
+# --
+test "${1:attribute} should be unique" do
+  new_$2 = @${2:var}.dup
+  assert !new_$2.valid?
+  assert new_$2.errors[:$1].any?
+end

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: log
+# key: log
+# --
+puts "=========="
+puts $1.inspect
+puts "=========="

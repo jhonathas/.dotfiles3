@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: install
+# key: install
+# --
+;; $1
+(unless (package-installed-p '$2) (package-refresh-contents)
+        (package-install '$3))
+(require '$4)

@@ -1,0 +1,10 @@
+# name : Should not be blank
+# key : tt
+# group: Unit test code
+# contributor : diegoalvareznogueira@gmail.com
+# --
+test "${1:attribute} should not be blank" do
+  @${2:var}.$1 = nil
+  assert !@$2.valid?
+  assert @$2.errors[:$1].any?
+end

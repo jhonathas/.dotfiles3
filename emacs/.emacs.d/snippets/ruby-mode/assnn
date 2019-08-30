@@ -1,0 +1,6 @@
+# name : Assert not nil
+# key : as
+# group: Unit test
+# contributor : diegoalvareznogueira@gmail.com
+# --
+assert_not_nil $0

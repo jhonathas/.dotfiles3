@@ -1,0 +1,8 @@
+# name : Assert no difference
+# key : as
+# group: Unit test
+# contributor : diegoalvareznogueira@gmail.com
+# --
+assert_no_difference "${1:Model}.count", ${2:1} do
+  $0
+end
