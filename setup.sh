@@ -1,124 +1,63 @@
 #!/usr/bin/env bash
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-PRIVATE_STOW_DIR="${HOME}/Dropbox/dotfiles"
+# ==========================
+# Global Setup variables
+# ==========================
 
-# Install Xcode Common
-! xcode-select -p &> /dev/null && xcode-select --install
+export PRIVATE_DOTFILE_HTTPS_REPO="https://github.com/jhonathas/.dotfiles_private.git"
+export PRIVATE_DOTFILE_SSH_REPO="git@github.com:jhonathas/.dotfiles_private.git"
+export PRIVATE_DOTFILE_PATH=~/.dotfiles_private
 
-# Install brew
-if test ! $(which brew)
-then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew tap caskroom/cask
+export DOTFILES_PATH=~/.dotfiles
+
+# ==========================
+# Private dotfiles
+# ==========================
+
+if ! [ -d "$PRIVATE_DOTFILE_PATH" ]; then
+  git clone $PRIVATE_DOTFILE_HTTPS_REPO $PRIVATE_DOTFILE_PATH
+  cd $PRIVATE_DOTFILE_PATH
+  git remote set-url origin "$PRIVATE_DOTFILE_SSH_REPO"
+
+  echo ""
+  echo "!! Stoped !!"
+  echo "Your private dotfiles is not configured."
+  echo ""
+
+  exit
 fi
 
-if [ ! -d ${PRIVATE_STOW_DIR} ]
-then
-    ! brew cask ls --versions dropbox &> /dev/null && brew cask install dropbox
-    echo
-    echo "Please, configure Dropbox to continue (enable download from dotfiles directory)!"
-    echo
-    echo "After configuration, rerun ./setup.sh"
-    exit 1
-fi
-
-# Install mas to run brew bundle
-if ! brew ls --versions mas &> /dev/null
-then
-    brew install mas stow
-fi
-
-# Oh My ZSH
-if [ ! -d "${HOME}/.oh-my-zsh" ]
-then
-    curl -L http://install.ohmyz.sh | sh
-fi
-
-# Packages
-packages=(
-    alacritty
-    brew
-    emacs
-    git
-    nvim
-    shell
-    tmux
-    vim
-    zsh
-)
-
-private_packages=(
-    aws
-    git
-    shell
-    ssh
-    tmuxinator
-)
+# ==========================
+# Menu
+# ==========================
 
 echo ""
-echo "Stowing packages for user: ${whoami}"
+echo "Choose the device to setup:"
+echo ""
+echo "1) PC (macOS)"
+echo "2) PC (Ubuntu) (i3wm)"
+echo "3) Macbook Pro (macOS)"
+echo "4) Macbook Pro (Ubuntu) (i3wm)"
+echo ""
+read -p "Device number: " device_opt
 
-# install packages and private packages available
-for app in ${private_packages[@]}; do
-    stow -v -t ${HOME} -d ${PRIVATE_STOW_DIR} $app
-done
+export DEVICE=""; export OS=""; export WM=""
 
-for app in ${packages[@]}; do
-    stow -v -t ${HOME} -d ${STOW_DIR} $app
-done
+case $device_opt in
+  "1") DEVICE="PC"        ; OS="macos"   ; WM="macos"  ; ./_setup-macos.sh    ;;
+  "2") DEVICE="PC"        ; OS="ubuntu"; WM="i3wm" ; ./_setup-ubuntu.sh ;;
+  "3") DEVICE="macbook-pro" ; OS="macos"   ; WM="macos"  ; ./_setup-macos.sh    ;;
+  "4") DEVICE="macbook-pro" ; OS="ubuntu"; WM="i3wm" ; ./_setup-ubuntu.sh ;;
+  *) echo "!! Invalid option !!" ;;
+esac
+
+# ==========================
+# Finish
+# ==========================
+
+cd $DOTFILES_PATH
 
 echo ""
-echo "##### ALL DONE"
-
-
-# Install brew packages
+echo "Finished!"
+echo "You need to restart your system to apply the configuration."
 echo ""
-echo "Brew is installing packages for user: ${whoami}"
-echo
-
-brew bundle --file="${HOME}/Brewfile"
-
-echo ""
-echo "##### ALL DONE"
-echo
-
-source "${HOME}/.zshrc"
-
-
-asdf plugin-add ruby
-asdf install ruby 2.6.4
-asdf global ruby 2.6.4
-source "${HOME}/.zshrc"
-gem install tmuxinator
-
-asdf plugin-add elixir
-asdf plugin-add erlang
-asdf plugin-add postgres
-asdf plugin-add redis
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-
-
-
-# FZF
-/usr/local/opt/fzf/install --all
-
-
-pip3 install neovim
-pip3 install --upgrade pip
-pip3 install --upgrade neovim
-
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-vim +PlugInstall +qall
-vim +UpdateRemotePlugins +qall
-vim +checkhealth +qall
-
-nvim +PlugInstall +qall
-nvim +UpdateRemotePlugins +qall
-nvim +checkhealth +qall
