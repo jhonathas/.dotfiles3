@@ -49,7 +49,6 @@ do
   echo ""
   echo "---- stowing $s ----"
   echo ""
-
   stow -v -t ${HOME} -d ${DOTFILES_PATH} $s
 done
 

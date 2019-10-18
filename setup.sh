@@ -36,18 +36,18 @@ echo "Choose the device to setup:"
 echo ""
 echo "1) PC (macOS)"
 echo "2) PC (Ubuntu) (i3wm)"
-echo "3) Macbook Pro (macOS)"
-echo "4) Macbook Pro (Ubuntu) (i3wm)"
+echo "3) Macbook Pro (Ubuntu) (i3wm)"
+echo "4) Macbook Air (macOS)"
 echo ""
 read -p "Device number: " device_opt
 
 export DEVICE=""; export OS=""; export WM=""
 
 case $device_opt in
-  "1") DEVICE="PC"        ; OS="macos"   ; WM="macos"  ; ./_setup-macos.sh    ;;
+  "1") DEVICE="PC"        ; OS="osx"   ; WM="osx"  ; ./_setup-macos.sh    ;;
   "2") DEVICE="PC"        ; OS="ubuntu"; WM="i3wm" ; ./_setup-ubuntu.sh ;;
-  "3") DEVICE="macbook-pro" ; OS="macos"   ; WM="macos"  ; ./_setup-macos.sh    ;;
-  "4") DEVICE="macbook-pro" ; OS="ubuntu"; WM="i3wm" ; ./_setup-ubuntu.sh ;;
+  "3") DEVICE="macbook-pro" ; OS="ubuntu"   ; WM="i3wm"  ; ./_setup-ubuntu.sh    ;;
+  "4") DEVICE="macbook-air" ; OS="osx"; WM="osx" ; ./_setup-macos.sh ;;
   *) echo "!! Invalid option !!" ;;
 esac
 
