@@ -3,14 +3,17 @@ export PATH=$PATH
 
 export EDITOR="nvim"
 
-if [[ "$(uname)" == "Darwin" ]]; then
-export JAVA_HOME=$(/usr/libexec/java_home)
-fi
+# if [[ "$(uname)" == "Darwin" ]]; then
+#   export JAVA_HOME=$(/usr/libexec/java_home)
+# fi
+
+. ~/.asdf/plugins/java/set-java-home.sh
+
 
 export PATH="/usr/local/sbin:$PATH"
 
 if [[ "$(uname)" == "Darwin" ]]; then
-export PATH=$(brew --prefix openssl)/bin:$PATH
+  export PATH=$(brew --prefix openssl)/bin:$PATH
 fi
 
 

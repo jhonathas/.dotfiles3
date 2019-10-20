@@ -12,7 +12,6 @@ source ~/.config/tmuxinator/tmuxinator.zsh
 
 export HISTFILE=~/.zsh_history
 
-
 unset MAILCHECK # disable "you have mail" warning
 
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
@@ -27,16 +26,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 export LC_ALL=en_US.UTF-8
-# export LC_MESSAGES="C"
-# export LANG=es_US.UTF-8
 
 export EDITOR='nvim'
 export STOW_DIR=$HOME/.dotfiles
-
-if [[ -d "/usr/lib/jvm/java-10-openjdk" ]]; then
-  export JAVA_HOME="/usr/lib/jvm/java-10-openjdk"
-  export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-fi
 
 if [[ "$os" == "Ubuntu" ]]; then
   source /usr/share/doc/fzf/examples/key-bindings.zsh
