@@ -12,6 +12,14 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+if !empty(glob("/usr/share/doc/fzf/examples"))
+  Plug '/usr/share/doc/fzf/examples'
+endif
+
+if !empty(glob("/usr/local/opt/fzf"))
+  Plug '/usr/local/opt/fzf'
+endif
+
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-better-default'
